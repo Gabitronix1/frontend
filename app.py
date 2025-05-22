@@ -34,9 +34,10 @@ if prompt:
 
     with st.spinner("Procesando respuesta del agente..."):
         try:
+            session_id = "usuario-1"  # Podés hacerlo dinámico si querés
             res = requests.post(
                 "https://n8n-production-993e.up.railway.app/webhook/01103618-3424-4455-bde6-aa8d295157b2",
-                json={"message": prompt}
+                json={"message": prompt, "sessionId": session_id}
             )
             res.raise_for_status()
             reply = res.json().get("response", "(Sin respuesta del agente)")
